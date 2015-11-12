@@ -30,19 +30,19 @@ quad = quadrature.QuadratureEstimator(1000.0/3)
 #controls front left wheel
 def frontleft(flcmd):
   #Top speed at 100 duty is 900 rad/s (unrealistic, but from the data sheet). Because I can't test speeds, I'll assume speed varies linearly with duty
-  if abs(flcmd.velocity) >= 900:
+  if abs(flcmd.velocity[0]) >= 900:
   	duty = 100
   else:
-  	duty = 100 * abs(flcmd.velocity) / 900
+  	duty = 100 * abs(flcmd.velocity[0]) / 900
 #  PWM.start("P9_14", duty)
-  print "PWM.start('P9_14', %s" % 100, ")"
-  if flcmd.velocity > 0:
+  print "PWM.start('P9_14', %s" % duty, ")"
+  if flcmd.velocity[0] > 0:
     #counterclockwise motion
 #    GPIO.output("P9_12", GPIO.HIGH)
 #    GPIO.ouptut("P9_11", GPIO.LOW)
 	print 'GPIO.output("P9_12", GPIO.HIGH)'
 	print 'GPIO.ouptut("P9_11", GPIO.LOW)'
-  if flcmd.velocity < 0:
+  if flcmd.velocity[0] < 0:
     #clockwise motion
 #    GPIO.output("P9_12", GPIO.LOW)
 #    GPIO.output("P9_11", GPIO.HIGH)
