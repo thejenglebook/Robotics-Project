@@ -10,12 +10,16 @@
 #CURRENT PROBLEMS:
 	#I DO NOT KNOW HOW TO TURN EXACTLY 90 DEGREES
 	#IMPORTS NEED FILLING
-	#TURN PSEUDO INTO ACTUAL CODE (lines that have !!! at beginning)
+	#TURN PSEUDO INTO ACTUAL CODE (LINES THAT HAVE !!! AT BEGINNING: QUADRATURE POSITIONING, SENSING, TURNING, PRODUCING SOUNDS)
+	#NEED TO ADD DISTANCE TRAVELING FOR OUTSIDE CORNERS
+	#POSSIBLY NEED TO WORK AROUND SOME OF THE SIMPLIFYING ASSUMPTIONS
+	#MAYBE NEED TO ADD RANGES FOR POSITION REQUIREMENTS (E.G. +- 0.25 METERS?)
 
 #imports
 !!! ALL IMPORTS
 #will need randomizing import?
 #will need quadrature/sensor reading imports
+#also message types
 
 #keeps track of direction facing when turning left
 def turnleft(xdirect, ydirect):
