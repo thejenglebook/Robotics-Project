@@ -25,6 +25,7 @@
 
 #keeps track of direction facing when turning left
 def turnleft(xdirect, ydirect):
+	!!! ROTATE LEFT
 	if ydirect == 1 and xdirect == 0:
 		ydirect = 0
 		xdirect = -1
@@ -42,6 +43,7 @@ def turnleft(xdirect, ydirect):
 
 #keeps track of direction when turning right
 def turnright(xdirect, ydirect):
+	!!! ROTATE RIGHT
 	if ydirect == 1 and xdirect == 0:
 		ydirect = 0
 		xdirect = 1
@@ -61,7 +63,6 @@ def turnright(xdirect, ydirect):
 #essentially a wall-following function until khan has returned to original planned path
 def avoidleft(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop):
 	#turn left
-	!!! ROTATE LEFT
 	xdirect, ydirect = turnleft(xdirect, ydirect)
 
 	#ensure initial movement, and end of function when we return to path line
@@ -82,7 +83,6 @@ def avoidleft(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop)
 			#stop
 			rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
 			#turn right
-			!!! ROTATE RIGHT
 			xdirect, ydirect = turnright(xdirect, ydirect)
 			turncount = turncount + 1
 			#continue on
@@ -92,7 +92,6 @@ def avoidleft(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop)
 			#stop
 			rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
 			#turn left
-			!!! ROTATE LEFT
 			xdirect, ydirect = turnleft(xdirect, ydirect)
 			turncount = turncount + 1
 			#continue on
@@ -104,7 +103,6 @@ def avoidleft(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop)
 			stop = True
 		#success conditions
 		else
-		!!! ROTATE LEFT
 		xdirect, ydirect = turnleft(xdirect, ydirect)
 		
 		#returns
@@ -113,7 +111,6 @@ def avoidleft(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop)
 	#essentially a wall-following function until khan has returned to original planned path (same as avoidleft, but to the right!)
 def avoidright(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop):
 	#turn right
-	!!! ROTATE RIGHT
 	xdirect, ydirect = turnright(xdirect, ydirect)
 
 	#ensure initial movement, and end of function when we return to path line
@@ -134,7 +131,6 @@ def avoidright(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop
 			#stop
 			rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
 			#turn left
-			!!! ROTATE LEFT
 			xdirect, ydirect = turnleft(xdirect, ydirect)
 			turncount = turncount + 1
 			#continue on
@@ -144,7 +140,6 @@ def avoidright(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop
 			#stop
 			rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
 			#turn right
-			!!! ROTATE RIGHT
 			xdirect, ydirect = turnright(xdirect, ydirect)
 			turncount = turncount + 1
 			#continue on
@@ -156,7 +151,6 @@ def avoidright(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop
 			stop = True
 		#success conditions
 		else
-		!!! ROTATE RIGHT
 		xdirect, ydirect = turnright(xdirect, ydirect)
 		
 		#returns
