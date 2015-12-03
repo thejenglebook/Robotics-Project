@@ -14,14 +14,17 @@
 	#NEED TO ADD DISTANCE TRAVELING FOR OUTSIDE CORNERS
 	#POSSIBLY NEED TO WORK AROUND SOME OF THE SIMPLIFYING ASSUMPTIONS
 	#MAYBE NEED TO ADD RANGES FOR POSITION REQUIREMENTS (E.G. +- 0.25 METERS?)
-	#WE NEED TO MEASURE SPEEDS AND GET CORRECT DUTY
-	#ADD SOME VARIABLES OTHER THAN RANDOMNESS WHEN DECIDING AVOID DIRECTION
 
 #imports
-!!! ALL IMPORTS
+import rospy
+from sensor_msgs.msg import JointState
+from std_msgs.msg import String
+from khan_msgs.msg import Quadrature
+from rosgraph_msgs import Clock
+from sensor_msgs.msg import Odometry
+
 #will need randomizing import?
 #will need quadrature/sensor reading imports
-#also message types
 
 #keeps track of direction facing when turning left
 def turnleft(xdirect, ydirect):
@@ -160,6 +163,7 @@ def avoidright(xgoal, yobstacle, xdirect, ydirect, xpos, ypos, sensorbound, stop
 
 #moves forward anc calls other functions in case of obstacle
 def main():
+	rospy.init_node('main', anonymous=True)
 	#input how far ahead you would like khan to go
 	goal = input('How many meters would you like KHAN to travel?')
 	#set up khan coordinate system
@@ -222,4 +226,8 @@ def main():
 				print('Goal has not been reached.')
 				quit()
 
-main()
+if __name__ == '__main__':
+  try:
+    motorcommand()
+  except rospy.ROSInterruptException:
+    pass
