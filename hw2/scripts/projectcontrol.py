@@ -27,11 +27,11 @@ def move():
 	rospy.init_node('move', anonymous=True)
 	#send a command to move it forward
 	if move == True:
-		rostopic pub /cmd_vel geometry_msgs/Twist -- '[0.5, 0, 0]' '[0, 0, 0]'
+		rostopic pub /cmd_vel geometry_msgs/Twist '[0.5, 0, 0]' '[0, 0, 0]'
 		#subscribe to topic /range
 	else if move == False:
 		#stop
-		rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
+		rostopic pub /cmd_vel geometry_msgs/Twist '[0, 0, 0]' '[0, 0, 0]'
 	#read range value
 	rospy.Subscriber('/range', Range, callback)
 	#continunally re-loop and keep looking for /range signals
