@@ -6,6 +6,7 @@
 import rospy
 from geometry_msgs import Twist
 from ros_msgs import Range
+from sensor_msgs.msg import JointState
 
 #initialize movement variable
 move = True
