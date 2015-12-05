@@ -22,7 +22,12 @@ GPIO.setup("P9_11", GPIO.OUT)
 #front right
 GPIO.setup("P8_09", GPIO.OUT)
 GPIO.setup("P8_08", GPIO.OUT)
-#leftencoder
+
+GPIO.setup("P9_13", GPIO.OUT)
+GPIO.setup("P9_15", GPIO.OUT)
+
+GPIO.setup("P8_10", GPIO.OUT)
+GPIO.setup("P8_11", GPIO.OUT)
 #GPIO.setup("P9_23", GPIO.IN)
 #GPIO.setup("P9_24", GPIO.IN)
 #GPIO.add_event_detect("P9_23", GPIO.BOTH)
@@ -39,9 +44,10 @@ def frontleft(flcmd):
   	duty = 100 * abs(flcmd.velocity[0]) / 900
   PWM.start("P9_14", duty)
   if flcmd.velocity[0] > 0:
+    print flcmd.velocity[0]
     #counterclockwise motion
     GPIO.output("P9_12", GPIO.HIGH)
-    GPIO.ouptut("P9_11", GPIO.LOW)
+    GPIO.output("P9_11", GPIO.LOW)
   if flcmd.velocity[0] < 0:
     #clockwise motion
     GPIO.output("P9_12", GPIO.LOW)
@@ -59,7 +65,7 @@ def frontright(frcmd):
   if frcmd.velocity[0] > 0:
     #counterclockwise motion
     GPIO.output("P8_09", GPIO.HIGH)
-    GPIO.ouptut("P8_08", GPIO.LOW)
+    GPIO.output("P8_08", GPIO.LOW)
   if frcmd.velocity[0] < 0:
     #clockwise motion
     GPIO.output("P8_09", GPIO.LOW)
@@ -75,7 +81,7 @@ def rearleft(rlcmd):
   if rlcmd.velocity[0] > 0:
     #counterclockwise motion
     GPIO.output("P9_13", GPIO.HIGH)
-    GPIO.ouptut("P9_15", GPIO.LOW)
+    GPIO.output("P9_15", GPIO.LOW)
   if rlcmd.velocity[0] < 0:
     #clockwise motion
     GPIO.output("P9_13", GPIO.LOW)
@@ -91,7 +97,7 @@ def rearright(rrcmd):
   if rrcmd.velocity[0] > 0:
     #counterclockwise motion
     GPIO.output("P8_10", GPIO.HIGH)
-    GPIO.ouptut("P8_11", GPIO.LOW)
+    GPIO.output("P8_11", GPIO.LOW)
   if rrcmd.velocity[0] < 0:
     #clockwise motion
     GPIO.output("P8_10", GPIO.LOW)
