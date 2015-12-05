@@ -65,6 +65,38 @@ def frontright(frcmd):
     GPIO.output("P8_09", GPIO.LOW)
     GPIO.output("P8_08", GPIO.HIGH)
 
+ #controls rear left wheel
+ def rearleft(rlcmd):
+ 	if abs(rlcmd.velocity[0]) >= 900:
+  	duty = 100
+  else:
+  	duty = 100 * abs(rlcmd.velocity[0]) / 900
+  PWM.start("P9_16", duty)
+  if rlcmd.velocity[0] > 0:
+    #counterclockwise motion
+    GPIO.output("P9_13", GPIO.HIGH)
+    GPIO.ouptut("P9_15", GPIO.LOW)
+  if rlcmd.velocity[0] < 0:
+    #clockwise motion
+    GPIO.output("P9_13", GPIO.LOW)
+    GPIO.output("P9_15", GPIO.HIGH)
+
+ #controls rear right wheel
+ def rearright(rrcmd):
+ 	if abs(rrcmd.velocity[0]) >= 900:
+  	duty = 100
+  else:
+  	duty = 100 * abs(rrcmd.velocity[0]) / 900
+  PWM.start("P8_19", duty)
+  if rrcmd.velocity[0] > 0:
+    #counterclockwise motion
+    GPIO.output("P8_10", GPIO.HIGH)
+    GPIO.ouptut("P8_11", GPIO.LOW)
+  if rrcmd.velocity[0] < 0:
+    #clockwise motion
+    GPIO.output("P8_10", GPIO.LOW)
+    GPIO.output("P8_11", GPIO.HIGH)  
+
 
 
 #FOLLOWING FUNCTION TAKES ENCODER DATA AND PUBLISHES JOINTSTATE, COMMENTED OUT BECAUSE I CANNOT GET ENCODER DATA WITHOUT FUNCTION ROBOT    
@@ -113,6 +145,8 @@ def motorcommand():
     rospy.init_node('motorcommand', anonymous=True)
     rospy.Subscriber('/cmd_vel', JointState, frontleft)
     rospy.Subscriber('/cmd_vel', JointState, frontright)
+    rospy.Subscriber('/cmd_vel', JointState, rearleft)
+    rospy.Subscriber('/cmd_vel', JointState, rearright)
  
 # FOLLOWING PART OF THE FUNCTION IS SUBSCRIBED TO TIME AND CALLS ENCODER-BASED FUNCTIONS, COMMENTED OUT BECAUSE OF LACK OF ENCODER
 
