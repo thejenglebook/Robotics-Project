@@ -21,7 +21,7 @@ GPIO.setup("P9_12", GPIO.OUT)
 GPIO.setup("P9_11", GPIO.OUT)
 #front right
 GPIO.setup("P8_09", GPIO.OUT)
-PIO.setup("P8_08", GPIO.OUT)
+GPIO.setup("P8_08", GPIO.OUT)
 #leftencoder
 #GPIO.setup("P9_23", GPIO.IN)
 #GPIO.setup("P9_24", GPIO.IN)
