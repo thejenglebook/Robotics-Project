@@ -7,22 +7,32 @@ import rospy
 from geometry_msgs import Twist
 from ros_msgs import Range
 
+#initialize movement variable
+move = True
+
 
 def callback(rangereading):
-	#if we detect anything
-	if rangereading <= 0.5:
+	#if we detect anything (/range reports in cm)
+	if rangereading <= 50:
 		#stop
-		rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
-		#quit program so we don't continue on
-		quit()
+		move = False
+	else:
+		#keep moving
+		move = True
+		
  
  #main function
 def move():
 	#initialize node
 	rospy.init_node('move', anonymous=True)
 	#send a command to move it forward
-	rostopic pub /cmd_vel geometry_msgs/Twist -- '[0.5, 0, 0]' '[0, 0, 0]'
-	#subscribe to topic /range
+	if move == True:
+		rostopic pub /cmd_vel geometry_msgs/Twist -- '[0.5, 0, 0]' '[0, 0, 0]'
+		#subscribe to topic /range
+	else if move == False:
+		#stop
+		rostopic pub /cmd_vel geometry_msgs/Twist -- '[0, 0, 0]' '[0, 0, 0]'
+	#read range value
 	rospy.Subscriber('/range', Range, callback)
 	#continunally re-loop and keep looking for /range signals
 	rospy.spin()

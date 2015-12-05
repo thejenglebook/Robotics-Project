@@ -6,7 +6,7 @@
 #commented out unecessary imports since we are not implementing encoder
 import rospy
 from sensor_msgs.msg import JointState
-from std_msgs.msg import String
+#from std_msgs.msg import String
 #from khan_msgs.msg import Quadrature
 #from rosgraph_msgs import Clock
 #import quadrature
@@ -18,7 +18,7 @@ import Adafruit_BBIO.PWM as PWM
 #quad = quadrature.QuadratureEstimator(1000.0/3)
 #frontleft
 GPIO.setup("P9_12", GPIO.OUT)
-PIO.setup("P9_11", GPIO.OUT)
+GPIO.setup("P9_11", GPIO.OUT)
 #front right
 GPIO.setup("P8_09", GPIO.OUT)
 PIO.setup("P8_08", GPIO.OUT)
@@ -111,7 +111,8 @@ def frontright(frcmd):
 #subscribes to controller messages and calls functions that actually command wheels
 def motorcommand():
     rospy.init_node('motorcommand', anonymous=True)
-    rospy.Subscriber('/py_controller/front_left_wheel/cmd', JointState, frontleft)
+    rospy.Subscriber('/cmd_vel', JointState, frontleft)
+    rospy.Subscriber('/cmd_vel', JointState, frontright)
  
 # FOLLOWING PART OF THE FUNCTION IS SUBSCRIBED TO TIME AND CALLS ENCODER-BASED FUNCTIONS, COMMENTED OUT BECAUSE OF LACK OF ENCODER
 
