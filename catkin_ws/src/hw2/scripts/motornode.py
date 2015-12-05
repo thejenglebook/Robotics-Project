@@ -10,12 +10,12 @@ from std_msgs.msg import String
 from khan_msgs.msg import Quadrature
 #from rosgraph_msgs import Clock
 import quadrature
-#import Adafruit_BBIO.GPIO as GPIO
-#import Adafruit_BBIO.PWM as PWM
+import Adafruit_BBIO.GPIO as GPIO
+import Adafruit_BBIO.PWM as PWM
 #from math import pi
 
 
-quad = quadrature.QuadratureEstimator(1000.0/3)
+#quad = quadrature.QuadratureEstimator(1000.0/3)
 #frontleft
 #GPIO.setup("P9_12", GPIO.OUT)
 #PIO.setup("P9_11", GPIO.OUT)
@@ -34,20 +34,35 @@ def frontleft(flcmd):
   	duty = 100
   else:
   	duty = 100 * abs(flcmd.velocity[0]) / 900
-#  PWM.start("P9_14", duty)
-  print "PWM.start('P9_14', %s" % duty, ")"
+  PWM.start("P9_14", duty)
   if flcmd.velocity[0] > 0:
     #counterclockwise motion
-#    GPIO.output("P9_12", GPIO.HIGH)
-#    GPIO.ouptut("P9_11", GPIO.LOW)
-	print 'GPIO.output("P9_12", GPIO.HIGH)'
-	print 'GPIO.ouptut("P9_11", GPIO.LOW)'
+    GPIO.output("P9_12", GPIO.HIGH)
+    GPIO.ouptut("P9_11", GPIO.LOW)
   if flcmd.velocity[0] < 0:
     #clockwise motion
-#    GPIO.output("P9_12", GPIO.LOW)
-#    GPIO.output("P9_11", GPIO.HIGH)
-	print 'GPIO.output("P9_12", GPIO.LOW)'
-	print 'GPIO.output("P9_11", GPIO.HIGH)'
+    GPIO.output("P9_12", GPIO.LOW)
+    GPIO.output("P9_11", GPIO.HIGH)
+
+
+#controls front left wheel
+def frontright(frcmd):
+  #Top speed at 100 duty is 900 rad/s (unrealistic, but from the data sheet). Because I can't test speeds, I'll assume speed varies linearly with duty
+  if abs(frcmd.velocity[0]) >= 900:
+  	duty = 100
+  else:
+  	duty = 100 * abs(frcmd.velocity[0]) / 900
+  PWM.start("P8_13", duty)
+  if frcmd.velocity[0] > 0:
+    #counterclockwise motion
+    GPIO.output("P8_09", GPIO.HIGH)
+    GPIO.ouptut("P8_08", GPIO.LOW)
+  if frcmd.velocity[0] < 0:
+    #clockwise motion
+    GPIO.output("P8_09", GPIO.LOW)
+    GPIO.output("P8_08", GPIO.HIGH)
+
+
 
 #FOLLOWING FUNCTION TAKES ENCODER DATA AND PUBLISHES JOINTSTATE, COMMENTED OUT BECAUSE I CANNOT GET ENCODER DATA WITHOUT FUNCTION ROBOT    
 
