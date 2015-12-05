@@ -7,9 +7,9 @@
 import rospy
 from sensor_msgs.msg import JointState
 from std_msgs.msg import String
-from khan_msgs.msg import Quadrature
+#from khan_msgs.msg import Quadrature
 #from rosgraph_msgs import Clock
-import quadrature
+#import quadrature
 import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
 #from math import pi
@@ -17,8 +17,11 @@ import Adafruit_BBIO.PWM as PWM
 
 #quad = quadrature.QuadratureEstimator(1000.0/3)
 #frontleft
-#GPIO.setup("P9_12", GPIO.OUT)
-#PIO.setup("P9_11", GPIO.OUT)
+GPIO.setup("P9_12", GPIO.OUT)
+PIO.setup("P9_11", GPIO.OUT)
+#front right
+GPIO.setup("P8_09", GPIO.OUT)
+PIO.setup("P8_08", GPIO.OUT)
 #leftencoder
 #GPIO.setup("P9_23", GPIO.IN)
 #GPIO.setup("P9_24", GPIO.IN)
