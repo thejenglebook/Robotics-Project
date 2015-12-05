@@ -143,10 +143,10 @@ def rearright(rrcmd):
 #subscribes to controller messages and calls functions that actually command wheels
 def motorcommand():
     rospy.init_node('motorcommand', anonymous=True)
-    rospy.Subscriber('/cmd_vel', Twist, frontleft)
-    rospy.Subscriber('/cmd_vel', Twist, frontright)
-    rospy.Subscriber('/cmd_vel', Twist, rearleft)
-    rospy.Subscriber('/cmd_vel', Twist, rearright)
+    rospy.Subscriber('/py_controller/front_left_wheel/cmd', JointState, frontleft)
+    rospy.Subscriber('/py_controller/front_right_wheel/cmd', JointState, frontright)
+    rospy.Subscriber('/py_controller/rear_left_wheel/cmd', JointState, rearleft)
+    rospy.Subscriber('/py_controller/rear_right_wheel/cmd', JointState, rearright)
  
 # FOLLOWING PART OF THE FUNCTION IS SUBSCRIBED TO TIME AND CALLS ENCODER-BASED FUNCTIONS, COMMENTED OUT BECAUSE OF LACK OF ENCODER
 
