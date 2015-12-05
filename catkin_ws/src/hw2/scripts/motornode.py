@@ -47,7 +47,6 @@ def frontleft(flcmd):
     GPIO.output("P9_12", GPIO.LOW)
     GPIO.output("P9_11", GPIO.HIGH)
 
-
 #controls front left wheel
 def frontright(frcmd):
   #Top speed at 100 duty is 900 rad/s (unrealistic, but from the data sheet). Because I can't test speeds, I'll assume speed varies linearly with duty
@@ -66,8 +65,8 @@ def frontright(frcmd):
     GPIO.output("P8_08", GPIO.HIGH)
 
  #controls rear left wheel
- def rearleft(rlcmd):
- 	if abs(rlcmd.velocity[0]) >= 900:
+def rearleft(rlcmd):
+  if abs(rlcmd.velocity[0]) >= 900:
   	duty = 100
   else:
   	duty = 100 * abs(rlcmd.velocity[0]) / 900
@@ -82,8 +81,8 @@ def frontright(frcmd):
     GPIO.output("P9_15", GPIO.HIGH)
 
  #controls rear right wheel
- def rearright(rrcmd):
- 	if abs(rrcmd.velocity[0]) >= 900:
+def rearright(rrcmd):
+  if abs(rrcmd.velocity[0]) >= 900:
   	duty = 100
   else:
   	duty = 100 * abs(rrcmd.velocity[0]) / 900
