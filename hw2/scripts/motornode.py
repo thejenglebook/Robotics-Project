@@ -42,7 +42,6 @@ def frontleft(flcmd):
       rate = 100
   PWM.start("P9_14", rate)
   if flcmd.velocity[0] > 0:
-    print duty
     #counterclockwise motion
     GPIO.output("P9_12", GPIO.HIGH)
     GPIO.output("P9_11", GPIO.LOW)
