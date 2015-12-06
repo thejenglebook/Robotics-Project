@@ -37,12 +37,10 @@ GPIO.setup("P8_11", GPIO.OUT)
 
 #controls front left wheel
 def frontleft(flcmd):
-  #Top speed at 100 duty is 900 rad/s (unrealistic, but from the data sheet). Because I can't test speeds, I'll assume speed varies linearly with duty
-  if abs(flcmd.velocity[0]) >= 900:
-  	duty = 100
-  else:
-  	duty = 100 * abs(flcmd.velocity[0]) / 900
-  PWM.start("P9_14", 50)
+  rate=6.8461703882*abs(flcmd.velocity[0]) + 4.7414065119 #emperically determined
+  if rate > 99.9: #truncate PWM if velocity is too high
+      rate = 100
+  PWM.start("P9_14", rate)
   if flcmd.velocity[0] > 0:
     print duty
     #counterclockwise motion
@@ -56,12 +54,10 @@ def frontleft(flcmd):
 
 #controls front left wheel
 def frontright(frcmd):
-  #Top speed at 100 duty is 900 rad/s (unrealistic, but from the data sheet). Because I can't test speeds, I'll assume speed varies linearly with duty
-  if abs(frcmd.velocity[0]) >= 900:
-  	duty = 100
-  else:
-  	duty = 100 * abs(frcmd.velocity[0]) / 900
-  PWM.start("P8_13", duty)
+  rate=6.8461703882*abs(frcmd.velocity[0]) + 4.7414065119 #emperically determined
+  if rate > 99.9: #truncate PWM if velocity is too high
+      rate = 100
+  PWM.start("P8_13", rate)
   if frcmd.velocity[0] > 0:
     #counterclockwise motion
     GPIO.output("P8_09", GPIO.HIGH)
@@ -73,11 +69,10 @@ def frontright(frcmd):
 
  #controls rear left wheel
 def rearleft(rlcmd):
-  if abs(rlcmd.velocity[0]) >= 900:
-  	duty = 100
-  else:
-  	duty = 100 * abs(rlcmd.velocity[0]) / 900
-  PWM.start("P9_16", duty)
+  rate=6.8461703882*abs(rlcmd.velocity[0]) + 4.7414065119 #emperically determined
+  if rate > 99.9: #truncate PWM if velocity is too high
+      rate = 100
+  PWM.start("P9_16", rate)
   if rlcmd.velocity[0] > 0:
     #counterclockwise motion
     GPIO.output("P9_13", GPIO.HIGH)
@@ -89,11 +84,10 @@ def rearleft(rlcmd):
 
  #controls rear right wheel
 def rearright(rrcmd):
-  if abs(rrcmd.velocity[0]) >= 900:
-  	duty = 100
-  else:
-  	duty = 100 * abs(rrcmd.velocity[0]) / 900
-  PWM.start("P8_19", duty)
+  rate=6.8461703882*abs(rrcmd.velocity[0]) + 4.7414065119 #emperically determined
+  if rate > 99.9: #truncate PWM if velocity is too high
+      rate = 100
+  PWM.start("P8_19", rate)
   if rrcmd.velocity[0] > 0:
     #counterclockwise motion
     GPIO.output("P8_10", GPIO.HIGH)
