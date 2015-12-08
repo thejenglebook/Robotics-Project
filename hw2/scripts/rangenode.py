@@ -13,12 +13,6 @@ import math
 ADC.setup()
 
 def callback():
-	
-
-#main function reads voltage and publishes Range value
-#ranges reported in cm
-def rangefunc():
-	rospy.init_node('rangefunc', anonymous=True)
 	value = ADC.read("P9_39")
 	outvoltage = 3.3 * value
 	#minimum range
@@ -38,6 +32,12 @@ def rangefunc():
 	rangeout.range = rangevalue
 	rospy.loginfo(rangeout)
 	pub.publish(rangeout)
+	
+
+#main function reads voltage and publishes Range value
+#ranges reported in cm
+def rangefunc():
+	rospy.init_node('rangefunc', anonymous=True)
 
 	rospy.Timer(1.0, callback)
 	rospy.spin()
