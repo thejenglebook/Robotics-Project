@@ -29,6 +29,7 @@ GPIO.setup("P9_15", GPIO.OUT)
 
 GPIO.setup("P8_10", GPIO.OUT)
 GPIO.setup("P8_11", GPIO.OUT)
+
 #GPIO.setup("P9_23", GPIO.IN)
 #GPIO.setup("P9_24", GPIO.IN)
 #GPIO.add_event_detect("P9_23", GPIO.BOTH)
@@ -45,16 +46,16 @@ def frontleft(flcmd):
     rate = 0
   PWM.start("P9_14", rate)
   if flcmd.velocity[0] > 0:
-    #counterclockwise motion
-    GPIO.output("P9_12", GPIO.HIGH)
-    GPIO.output("P9_11", GPIO.LOW)
-  if flcmd.velocity[0] < 0:
-    #clockwise motion
-    GPIO.output("P9_12", GPIO.LOW)
+    #counterclockwise motion (forward)
     GPIO.output("P9_11", GPIO.HIGH)
+    GPIO.output("P9_12", GPIO.LOW)
+  if flcmd.velocity[0] < 0:
+    #clockwise motion (backward)
+    GPIO.output("P9_11", GPIO.LOW)
+    GPIO.output("P9_12", GPIO.HIGH)
 
 
-#controls front left wheel
+#controls front right wheel
 def frontright(frcmd):
   rate=6.8461703882*abs(frcmd.velocity[0]) + 4.7414065119 #emperically determined
   if rate > 99.9: #truncate PWM if velocity is too high
@@ -63,11 +64,11 @@ def frontright(frcmd):
     rate = 0
   PWM.start("P8_13", rate)
   if frcmd.velocity[0] > 0:
-    #counterclockwise motion
+    #counterclockwise motion (backward)
     GPIO.output("P8_09", GPIO.HIGH)
     GPIO.output("P8_08", GPIO.LOW)
   if frcmd.velocity[0] < 0:
-    #clockwise motion
+    #clockwise motion (forward)
     GPIO.output("P8_09", GPIO.LOW)
     GPIO.output("P8_08", GPIO.HIGH)
 
@@ -80,11 +81,11 @@ def rearleft(rlcmd):
     rate = 0
   PWM.start("P9_16", rate)
   if rlcmd.velocity[0] > 0:
-    #counterclockwise motion
+    #counterclockwise motion (forward)
     GPIO.output("P9_13", GPIO.HIGH)
     GPIO.output("P9_15", GPIO.LOW)
   if rlcmd.velocity[0] < 0:
-    #clockwise motion
+    #clockwise motion (backward)
     GPIO.output("P9_13", GPIO.LOW)
     GPIO.output("P9_15", GPIO.HIGH)
 
@@ -97,13 +98,13 @@ def rearright(rrcmd):
     rate = 0
   PWM.start("P8_19", rate)
   if rrcmd.velocity[0] > 0:
-    #counterclockwise motion
-    GPIO.output("P8_10", GPIO.HIGH)
-    GPIO.output("P8_11", GPIO.LOW)
-  if rrcmd.velocity[0] < 0:
-    #clockwise motion
+    #counterclockwise motion (backward)
+    GPIO.output("P8_11", GPIO.HIGH)
     GPIO.output("P8_10", GPIO.LOW)
-    GPIO.output("P8_11", GPIO.HIGH)  
+  if rrcmd.velocity[0] < 0:
+    #clockwise motion (forward)
+    GPIO.output("P8_11", GPIO.LOW)
+    GPIO.output("P8_10", GPIO.HIGH)  
 
 
 
