@@ -47,12 +47,12 @@ def frontleft(flcmd):
   PWM.start("P9_14", rate)
   if flcmd.velocity[0] > 0:
     #counterclockwise motion (forward)
-    GPIO.output("P9_11", GPIO.HIGH)
-    GPIO.output("P9_12", GPIO.LOW)
+    GPIO.output("P9_12", GPIO.HIGH)
+    GPIO.output("P9_11", GPIO.LOW)
   if flcmd.velocity[0] < 0:
     #clockwise motion (backward)
-    GPIO.output("P9_11", GPIO.LOW)
-    GPIO.output("P9_12", GPIO.HIGH)
+    GPIO.output("P9_12", GPIO.LOW)
+    GPIO.output("P9_11", GPIO.HIGH)
 
 
 #controls front right wheel
@@ -62,6 +62,7 @@ def frontright(frcmd):
     rate = 100
   if frcmd.velocity[0] == 0:
     rate = 0
+  print rate
   PWM.start("P8_13", rate)
   if frcmd.velocity[0] > 0:
     #counterclockwise motion (backward)
