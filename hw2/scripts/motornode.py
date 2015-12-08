@@ -16,6 +16,7 @@ import Adafruit_BBIO.PWM as PWM
 
 
 #quad = quadrature.QuadratureEstimator(1000.0/3)
+
 #frontleft
 GPIO.setup("P9_12", GPIO.OUT)
 GPIO.setup("P9_11", GPIO.OUT)
@@ -39,7 +40,9 @@ GPIO.setup("P8_11", GPIO.OUT)
 def frontleft(flcmd):
   rate=6.8461703882*abs(flcmd.velocity[0]) + 4.7414065119 #emperically determined
   if rate > 99.9: #truncate PWM if velocity is too high
-      rate = 100
+    rate = 100
+  if flcmd.velocity[0] == 0:
+    rate = 0
   PWM.start("P9_14", rate)
   if flcmd.velocity[0] > 0:
     #counterclockwise motion
@@ -55,7 +58,9 @@ def frontleft(flcmd):
 def frontright(frcmd):
   rate=6.8461703882*abs(frcmd.velocity[0]) + 4.7414065119 #emperically determined
   if rate > 99.9: #truncate PWM if velocity is too high
-      rate = 100
+    rate = 100
+  if frcmd.velocity[0] == 0:
+    rate = 0
   PWM.start("P8_13", rate)
   if frcmd.velocity[0] > 0:
     #counterclockwise motion
@@ -70,7 +75,9 @@ def frontright(frcmd):
 def rearleft(rlcmd):
   rate=6.8461703882*abs(rlcmd.velocity[0]) + 4.7414065119 #emperically determined
   if rate > 99.9: #truncate PWM if velocity is too high
-      rate = 100
+    rate = 100
+  if rlcmd.velocity[0] == 0:
+    rate = 0
   PWM.start("P9_16", rate)
   if rlcmd.velocity[0] > 0:
     #counterclockwise motion
@@ -85,7 +92,9 @@ def rearleft(rlcmd):
 def rearright(rrcmd):
   rate=6.8461703882*abs(rrcmd.velocity[0]) + 4.7414065119 #emperically determined
   if rate > 99.9: #truncate PWM if velocity is too high
-      rate = 100
+    rate = 100
+  if rrcmd.velocity[0] == 0:
+    rate = 0
   PWM.start("P8_19", rate)
   if rrcmd.velocity[0] > 0:
     #counterclockwise motion

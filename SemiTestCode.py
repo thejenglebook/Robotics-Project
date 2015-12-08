@@ -23,12 +23,12 @@ GPIO.setup("P9_13", GPIO.OUT); GPIO.output("P9_13", GPIO.LOW)
 GPIO.setup("P9_15", GPIO.OUT); GPIO.output("P9_15", GPIO.LOW)
 print "Check 2"
 #left back motor
-GPIO.setup("P8_11", GPIO.OUT); GPIO.output("P8_11", GPIO.LOW)
-GPIO.setup("P8_12", GPIO.OUT); GPIO.output("P8_12", GPIO.LOW)
+GPIO.setup("P8_9", GPIO.OUT); GPIO.output("P8_9", GPIO.LOW)
+GPIO.setup("P8_8", GPIO.OUT); GPIO.output("P8_8", GPIO.LOW)
 print "Check 3"
 #left front motor
-GPIO.setup("P8_17", GPIO.OUT); GPIO.output("P8_17", GPIO.LOW)
-GPIO.setup("P8_18", GPIO.OUT); GPIO.output("P8_18", GPIO.LOW)
+GPIO.setup("P8_10", GPIO.OUT); GPIO.output("P8_10", GPIO.LOW)
+GPIO.setup("P8_11", GPIO.OUT); GPIO.output("P8_11", GPIO.LOW)
 print "Check 4"
 
 
@@ -59,22 +59,22 @@ PWM.stop("P9_16")
 print "Test Motor 3 - Left Back"
 PWM.set_duty_cycle("P8_13", 50)
 raw_input('Press enter to activate')
-GPIO.output("P8_11", GPIO.HIGH)
-GPIO.output("P8_12", GPIO.LOW)
+GPIO.output("P8_8", GPIO.HIGH)
+GPIO.output("P8_9", GPIO.LOW)
 raw_input('Press enter to change direction')
-GPIO.output("P8_11", GPIO.LOW)
-GPIO.output("P8_12", GPIO.HIGH)
+GPIO.output("P8_8", GPIO.LOW)
+GPIO.output("P8_9", GPIO.HIGH)
 raw_input('Press enter to continue')
 PWM.stop("P8_13")
 
 print "Test Motor 4 - Left Front"
 PWM.set_duty_cycle("P8_19", 50)
 raw_input('Press enter to activate')
-GPIO.output("P8_17", GPIO.HIGH)
-GPIO.output("P8_18", GPIO.LOW)
+GPIO.output("P8_11", GPIO.HIGH)
+GPIO.output("P8_10", GPIO.LOW)
 raw_input('Press enter to change direction')
-GPIO.output("P8_17", GPIO.LOW)
-GPIO.output("P8_18", GPIO.HIGH)
+GPIO.output("P8_11", GPIO.LOW)
+GPIO.output("P8_10", GPIO.HIGH)
 raw_input('Press enter to continue')
 PWM.stop("P8_19")
 
