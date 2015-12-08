@@ -8,8 +8,9 @@ from geometry_msgs import Twist
 from ros_msgs import Range
 from sensor_msgs.msg import JointState
 
-#initialize movement variable
+#initialize movement variable & velcommand as a Twist message
 move = True
+velcommand = Twist()
 
 
 def callback(rangereading):
@@ -24,15 +25,18 @@ def callback(rangereading):
  
  #main function
 def move():
+	global pub
 	#initialize node
 	rospy.init_node('move', anonymous=True)
 	#send a command to move it forward
 	if move == True:
-		rostopic pub /cmd_vel geometry_msgs/Twist '[0.005, 0, 0]' '[0, 0, 0]'
+		velcommand.linear.x = 0.005
 		#subscribe to topic /range
 	else if move == False:
 		#stop
-		rostopic pub /cmd_vel geometry_msgs/Twist '[0, 0, 0]' '[0, 0, 0]'
+		celcommand.linear.x = 0
+	#publish velocity command
+	pub.publish(velcommand)
 	#read range value
 	rospy.Subscriber('/range', Range, callback)
 	#continunally re-loop and keep looking for /range signals

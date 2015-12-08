@@ -6,7 +6,7 @@ from sensor_msgs.msg import JointState
 from khan_msgs.msg import Quadrature
 import quadrature
 
-quad = quadrature.QuadratureEstimator(100)
+quad = quadrature.QuadratureEstimator(1000)
 
 def callback(data):
     #Takes data from bag file and runs through update function
