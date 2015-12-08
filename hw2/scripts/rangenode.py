@@ -12,7 +12,7 @@ import math
 #setting up pin
 ADC.setup()
 
-def callback():
+def callback(event):
 	value = ADC.read("P9_39")
 	outvoltage = 3.3 * value
 	#minimum range
@@ -39,7 +39,7 @@ def callback():
 def rangefunc():
 	rospy.init_node('rangefunc', anonymous=True)
 
-	rospy.Timer(1.0, callback)
+	rospy.Timer(rospy.Duration(1), callback)
 	rospy.spin()
 	
 if __name__ == '__main__':
