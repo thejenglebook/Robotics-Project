@@ -22,7 +22,7 @@ def callback():
 		rangevalue = 150
 	else:
 		#exponential fit function, derived from data sheet
-		rangevalue = 2000 * math.pow(outvoltage, -1.02)
+		rangevalue = 61.7 * math.pow(outvoltage, -1.2)
 
 	#assign values and publish
 	pub = rospy.Publisher('/range', Range, queue_size=10)
