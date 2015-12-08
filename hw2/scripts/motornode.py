@@ -44,15 +44,15 @@ def frontleft(flcmd):
     rate = 100
   if flcmd.velocity[0] == 0:
     rate = 0
-  PWM.start("P9_14", rate)
+  PWM.start("P9_14", 50)
   if flcmd.velocity[0] > 0:
     #counterclockwise motion (forward)
-    GPIO.output("P9_12", GPIO.HIGH)
-    GPIO.output("P9_11", GPIO.LOW)
+    GPIO.output("P9_11", GPIO.HIGH)
+    GPIO.output("P9_12", GPIO.LOW)
   if flcmd.velocity[0] < 0:
     #clockwise motion (backward)
-    GPIO.output("P9_12", GPIO.LOW)
-    GPIO.output("P9_11", GPIO.HIGH)
+    GPIO.output("P9_11", GPIO.LOW)
+    GPIO.output("P9_12", GPIO.HIGH)
 
 
 #controls front right wheel
@@ -62,16 +62,15 @@ def frontright(frcmd):
     rate = 100
   if frcmd.velocity[0] == 0:
     rate = 0
-  print rate
-  PWM.start("P8_13", rate)
+  PWM.start("P8_13", 50)
   if frcmd.velocity[0] > 0:
     #counterclockwise motion (backward)
-    GPIO.output("P8_9", GPIO.HIGH)
-    GPIO.output("P8_8", GPIO.LOW)
+    GPIO.output("P8_8", GPIO.HIGH)
+    GPIO.output("P8_9", GPIO.LOW)
   if frcmd.velocity[0] < 0:
     #clockwise motion (forward)
-    GPIO.output("P8_9", GPIO.LOW)
-    GPIO.output("P8_8", GPIO.HIGH)
+    GPIO.output("P8_8", GPIO.LOW)
+    GPIO.output("P8_9", GPIO.HIGH)
 
  #controls rear left wheel
 def rearleft(rlcmd):
@@ -80,7 +79,7 @@ def rearleft(rlcmd):
     rate = 100
   if rlcmd.velocity[0] == 0:
     rate = 0
-  PWM.start("P9_16", rate)
+  PWM.start("P9_16", 50)
   if rlcmd.velocity[0] > 0:
     #counterclockwise motion (forward)
     GPIO.output("P9_13", GPIO.HIGH)
@@ -97,15 +96,15 @@ def rearright(rrcmd):
     rate = 100
   if rrcmd.velocity[0] == 0:
     rate = 0
-  PWM.start("P8_19", rate)
+  PWM.start("P8_19", 50)
   if rrcmd.velocity[0] > 0:
     #counterclockwise motion (backward)
-    GPIO.output("P8_11", GPIO.HIGH)
-    GPIO.output("P8_10", GPIO.LOW)
+    GPIO.output("P8_10", GPIO.HIGH)
+    GPIO.output("P8_11", GPIO.LOW)
   if rrcmd.velocity[0] < 0:
     #clockwise motion (forward)
-    GPIO.output("P8_11", GPIO.LOW)
-    GPIO.output("P8_10", GPIO.HIGH)  
+    GPIO.output("P8_10", GPIO.LOW)
+    GPIO.output("P8_11", GPIO.HIGH)  
 
 
 
