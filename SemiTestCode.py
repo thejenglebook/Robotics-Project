@@ -14,19 +14,19 @@ PWM.start("P8_13", 0, 1000, 0)
 PWM.start("P8_19", 0, 1000, 0)
 print "Hello, World!"
 
-#right front motor
+#front left motor
 GPIO.setup("P9_11", GPIO.OUT); GPIO.output("P9_11", GPIO.LOW)
 GPIO.setup("P9_12", GPIO.OUT); GPIO.output("P9_12", GPIO.LOW)
 print "Check 1"
-#right back motor
+#rear left motor
 GPIO.setup("P9_13", GPIO.OUT); GPIO.output("P9_13", GPIO.LOW)
 GPIO.setup("P9_15", GPIO.OUT); GPIO.output("P9_15", GPIO.LOW)
 print "Check 2"
-#left back motor
+#front right motor
 GPIO.setup("P8_9", GPIO.OUT); GPIO.output("P8_9", GPIO.LOW)
 GPIO.setup("P8_8", GPIO.OUT); GPIO.output("P8_8", GPIO.LOW)
 print "Check 3"
-#left front motor
+#rear right motor
 GPIO.setup("P8_10", GPIO.OUT); GPIO.output("P8_10", GPIO.LOW)
 GPIO.setup("P8_11", GPIO.OUT); GPIO.output("P8_11", GPIO.LOW)
 print "Check 4"

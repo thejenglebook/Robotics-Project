@@ -21,12 +21,12 @@ import Adafruit_BBIO.PWM as PWM
 GPIO.setup("P9_12", GPIO.OUT)
 GPIO.setup("P9_11", GPIO.OUT)
 #front right
-GPIO.setup("P8_09", GPIO.OUT)
-GPIO.setup("P8_08", GPIO.OUT)
-
+GPIO.setup("P8_9", GPIO.OUT)
+GPIO.setup("P8_8", GPIO.OUT)
+#rear left
 GPIO.setup("P9_13", GPIO.OUT)
 GPIO.setup("P9_15", GPIO.OUT)
-
+#rear right
 GPIO.setup("P8_10", GPIO.OUT)
 GPIO.setup("P8_11", GPIO.OUT)
 
@@ -65,12 +65,12 @@ def frontright(frcmd):
   PWM.start("P8_13", rate)
   if frcmd.velocity[0] > 0:
     #counterclockwise motion (backward)
-    GPIO.output("P8_09", GPIO.HIGH)
-    GPIO.output("P8_08", GPIO.LOW)
+    GPIO.output("P8_9", GPIO.HIGH)
+    GPIO.output("P8_8", GPIO.LOW)
   if frcmd.velocity[0] < 0:
     #clockwise motion (forward)
-    GPIO.output("P8_09", GPIO.LOW)
-    GPIO.output("P8_08", GPIO.HIGH)
+    GPIO.output("P8_9", GPIO.LOW)
+    GPIO.output("P8_8", GPIO.HIGH)
 
  #controls rear left wheel
 def rearleft(rlcmd):
