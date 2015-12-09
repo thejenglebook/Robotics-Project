@@ -44,7 +44,7 @@ def frontleft(flcmd):
     rate = 100
   if flcmd.velocity[0] == 0:
     rate = 0
-    PWM.start("P9_14", 50)
+  PWM.start("P9_14", 50)
   if flcmd.velocity[0] > 0:
     #counterclockwise motion (forward)
     GPIO.output("P9_11", GPIO.HIGH)
